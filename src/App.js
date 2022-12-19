@@ -50,7 +50,6 @@ function App() {
     // clear all letters
     clearLetterStates();
 
-
     // choose a word
     const { category, word } = pickWordAndCategory();
 
@@ -112,8 +111,8 @@ function App() {
 useEffect(()=>{
   const uniqueLetters=[... new Set(letters)];
   if(guessedLetters.length===uniqueLetters.length){
-    setScore((actualScore) => actualScore +=100)
-
+    setScore((actualScore) => actualScore +=1)
+    resetChance();
     startGame();
   }
 },[guessedLetters,letters,startGame]);
@@ -122,6 +121,9 @@ useEffect(()=>{
     setScore(0);
     setGuesses(3);
     setGameStage(stages[0].name);
+  }
+  const resetChance=()=>{
+    setGuesses(3)
   }
 
   return (
